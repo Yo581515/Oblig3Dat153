@@ -12,11 +12,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = data.isNotEmpty
-        ? data
-        : ModalRoute.of(context)?.settings.arguments as Map;
-    print('am here - $data');
+    data =
+        data.isEmpty ? ModalRoute.of(context)?.settings.arguments as Map : data;
 
+    print('am here - $data');
     //set background
     String bgImage = data['isDayTime'] ? 'day.png' : 'night.png';
     Color? bgColor = data['isDayTime'] ? Colors.blue : Colors.indigo[700];
@@ -30,7 +29,7 @@ class _HomeState extends State<Home> {
           image: AssetImage('assets/$bgImage'),
           fit: BoxFit.cover,
         )),
-        child: Padding(
+        child: Container(
           padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
           child: Column(
             children: <Widget>[
@@ -61,24 +60,23 @@ class _HomeState extends State<Home> {
               SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    data['location'],
-                    style: TextStyle(
-                      fontSize: 28,
-                      letterSpacing: 2,
-                      color: Colors.white,
-                    ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  data['location'],
+                  style: TextStyle(
+                    fontSize: 28,
+                    letterSpacing: 2,
+                    color: Colors.white,
                   ),
-                ],
+                ),
               ),
               SizedBox(
                 height: 20,
               ),
               Text(
                 data['time'],
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 66,
                   color: Colors.white,
