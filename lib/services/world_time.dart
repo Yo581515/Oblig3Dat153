@@ -12,6 +12,7 @@ class WorldTime {
   WorldTime({required this.url, required this.location, required this.flag});
 
   Future<void> getTime() async {
+
     try {
       // make the request;
       var uRL = Uri.parse('http://worldtimeapi.org/api/timezone/$url');
